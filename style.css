@@ -1,0 +1,85 @@
+/* CSS is how you can add style to your website, such as colors, fonts, and positioning of your
+   HTML content. To learn how to do something, just try searching Google for questions like
+   "how to change link color." */
+
+   body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    text-align: center;
+  }
+  
+h1 {
+text-align: center;
+color: #333333;
+margin-top: 50px;
+}
+
+nav {
+background-color: #333;
+padding: 10px;
+}
+
+nav button {
+color: white;
+background-color: #555;
+border: none;
+padding: 10px 20px;
+margin-right: 10px;
+cursor: pointer;
+}
+
+/*.container {*/
+/*  margin-top: 50px;*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*  align-items: center;*/
+/*}*/
+
+.upload-form {
+padding: 20px;
+background-color: #ffffff;
+border-radius: 5px;
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.upload-form label {
+display: block;
+margin-bottom: 10px;
+color: #333333;
+font-weight: bold;
+}
+
+.upload-form input[type="file"] {
+margin-bottom: 20px;
+}
+
+.upload-form input[type="submit"] {
+background-color: #4CAF50;
+color: #ffffff;
+border: none;
+padding: 10px 20px;
+font-size: 16px;
+border-radius: 3px;
+cursor: pointer;
+}
+
+.upload-form input[type="submit"]:hover {
+background-color: #45a049;
+}
+
+#containermodelo {
+display: flex;
+justify-content: space-between;
+flex-wrap: wrap;
+}
+
+#containermodelo img {
+max-width: 100%;
+height: auto;
+}
+
+#containermodelo div {
+flex-basis: calc(50% - 10px);
+margin-bottom: 20px;
+text-align: center;
+}
