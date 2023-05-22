@@ -83,3 +83,9 @@ flex-basis: calc(50% - 10px);
 margin-bottom: 20px;
 text-align: center;
 }
+#loading {
+  display: none; /* Ocultar el mensaje inicialmente */
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+}
