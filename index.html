@@ -71,7 +71,7 @@
         var image = document.createElement("img");
       
         // Configura los atributos de la imagen
-        image.setAttribute("src", "visualizacion.png");
+        image.setAttribute("src", "img/visualizacion.png");
       
         // Crea un contenedor div para la imagen
         var imageContainer = document.createElement("div");
@@ -110,10 +110,10 @@
         }
       
         // Agrega las imágenes con sus pies de imagen correspondientes
-        addImageWithCaption("acc.png", "Accuracy");
-        addImageWithCaption("loss.png", "Loss");
-        addImageWithCaption("matriz.png", "Matriz de Confusión");
-        addImageWithCaption("modelo.png", "Modelo");
+        addImageWithCaption("img/acc.png", "Accuracy");
+        addImageWithCaption("img/loss.png", "Loss");
+        addImageWithCaption("img/matriz.png", "Matriz de Confusión");
+        addImageWithCaption("img/modelo.png", "Modelo");
       
         // Agrega el div "containermodelo" al elemento container
         container.appendChild(containerModeloDiv);
@@ -142,7 +142,7 @@
 
       async function loadModelAndPredict(imageData) {
         console.log("Cargando modelo...");
-        const model = await tf.loadLayersModel("https://proyectoia.neocities.org/modelosjs/model.json");
+        const model = await tf.loadLayersModel("https://hugocs2002.github.io/proyectoia/modelosjs/model.json");
         console.log("Modelo cargado...");
 
         // Resto de tu código para predecir utilizando el modelo
