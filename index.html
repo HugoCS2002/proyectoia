@@ -16,42 +16,31 @@
       <button id="btnvis">Visualización de datos</button>
       <button id="btnmod">Entrenamiento del modelo</button>
     </nav>
-    <!--<a href="prueba.html">prueba</a>-->
-    <div id="container">
-    <!--<form>-->
-    <!--  <input type="file" id="myFile" name="myFile">-->
-    <!--  <input type="button" value="Enviar" onclick="handleFormSubmit()">-->
-    <!--</form>-->
-    <!--<p id="pred"></p>-->
-    <!--<div id="show"></div> Enseña la imagen -->
-    </div>
+    <div id="container"></div>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.12.0/dist/tf.min.js"></script>
     <script>
-      // Obtén una referencia a los elementos de los botones
       var btnPred = document.getElementById("btnpred");
       var btnVis = document.getElementById("btnvis");
       var btnMod = document.getElementById("btnmod");
       var container = document.getElementById("container");
       
-      // Agrega un event listener al botón btnpred
       btnPred.addEventListener("click", function() {
-        // Borra todo el contenido dentro de container
         container.innerHTML = "";
       
-        // Crea los elementos y los agrega a container
         var form = document.createElement("form");
         var inputFile = document.createElement("input");
         var submitButton = document.createElement("input");
+        var sendButton = document.createElement("button");
         var predParagraph = document.createElement("p");
         var showDiv = document.createElement("div");
       
         form.appendChild(inputFile);
         form.appendChild(submitButton);
+        form.appendChild(sendButton);
         container.appendChild(form);
         container.appendChild(predParagraph);
         container.appendChild(showDiv);
       
-        // Configura los atributos de los elementos creados
         form.setAttribute("id", "myForm");
         inputFile.setAttribute("type", "file");
         inputFile.setAttribute("id", "myFile");
@@ -59,67 +48,59 @@
         submitButton.setAttribute("type", "button");
         submitButton.setAttribute("value", "Enviar");
         submitButton.setAttribute("onclick", "handleFormSubmit()");
+        sendButton.setAttribute("id", "send");
+        sendButton.textContent = "Enviar";
         predParagraph.setAttribute("id", "pred");
         showDiv.setAttribute("id", "show");
+
+        sendButton.addEventListener("click", function() {
+          var tempParagraph = document.createElement("p");
+          tempParagraph.setAttribute("id", "temp");
+          tempParagraph.textContent = "Cargando modelo...";
+          container.appendChild(tempParagraph);
+        });
       });
       
-      // Agrega event listeners a los botones btnvis y btnmod
-     btnVis.addEventListener("click", function() {
-        // Borra todo el contenido dentro de container
+      btnVis.addEventListener("click", function() {
         container.innerHTML = "";
       
-        // Crea un elemento de imagen
         var image = document.createElement("img");
       
-        // Configura los atributos de la imagen
         image.setAttribute("src", "img/visualizacion.png");
       
-        // Crea un contenedor div para la imagen
         var imageContainer = document.createElement("div");
         imageContainer.appendChild(image);
       
-        // Agrega el contenedor de imagen al elemento container
         container.appendChild(imageContainer);
       });
       
-      
-      btnmod.addEventListener("click", function() {
-        // Borra todo el contenido dentro de container
+      btnMod.addEventListener("click", function() {
         container.innerHTML = "";
       
-        // Crea el div con ID "containermodelo"
         var containerModeloDiv = document.createElement("div");
         containerModeloDiv.setAttribute("id", "containermodelo");
       
-        // Crea una función auxiliar para agregar imágenes con pies de imagen
         function addImageWithCaption(src, caption) {
-          // Crea el elemento de imagen
           var image = document.createElement("img");
           image.setAttribute("src", src);
       
-          // Crea el elemento de pie de imagen
           var captionPara = document.createElement("p");
           captionPara.textContent = caption;
       
-          // Crea el contenedor para la imagen y el pie de imagen
           var imageContainer = document.createElement("div");
           imageContainer.appendChild(image);
           imageContainer.appendChild(captionPara);
       
-          // Agrega el contenedor al div "containermodelo"
           containerModeloDiv.appendChild(imageContainer);
         }
       
-        // Agrega las imágenes con sus pies de imagen correspondientes
         addImageWithCaption("img/acc.png", "Accuracy");
         addImageWithCaption("img/loss.png", "Loss");
         addImageWithCaption("img/matriz.png", "Matriz de Confusión");
         addImageWithCaption("img/modelo.png", "Modelo");
       
-        // Agrega el div "containermodelo" al elemento container
         container.appendChild(containerModeloDiv);
       });
-
       
       async function handleFormSubmit() {
         var fileInput = document.getElementById("myFile");
@@ -128,52 +109,37 @@
         if (file) {
           var reader = new FileReader();
           
-          // Define una función de devolución de llamada cuando la imagen se haya cargado correctamente
           reader.onload = function(e) {
             var imageData = e.target.result;
             
-            // Cargar el modelo desde la ubicación especificada
             loadModelAndPredict(imageData);
           }
           
-          // Leer el contenido de la imagen como una URL de datos
           reader.readAsDataURL(file);
         }
       }
-
+      
       async function loadModelAndPredict(imageData) {
         console.log("Cargando modelo...");
         const model = await tf.loadLayersModel("https://raw.githubusercontent.com/HugoCS2002/proyectoia/master/modelojs/model.json");
-        // const model = await tf.loadLayersModel("/modelosjs/model.json");
         console.log("Modelo cargado...");
-
-        // Resto de tu código para predecir utilizando el modelo
-        // Aquí puedes utilizar el modelo cargado para hacer predicciones con la imagen
-
-        // Por ejemplo, puedes mostrar la imagen en un div con el id "show"
+      
         var showDiv = document.getElementById("show");
         showDiv.innerHTML = '<img src="' + imageData + '">';
       
-        // Crear un elemento de imagen
         const image = new Image();
         image.src = imageData;
       
-        // Esperar a que la imagen se cargue completamente
         await image.decode();
       
-        // Redimensionar la imagen a 200x200 píxeles
         const resizedImage = tf.browser.fromPixels(image).resizeBilinear([200, 200]).toFloat();
       
-        // Expandir las dimensiones de la imagen para que coincida con el formato de entrada del modelo
         const inputTensor = resizedImage.expandDims();
       
-        // Normalizar los valores de píxeles entre 0 y 1
         const normalizedInput = inputTensor.div(255.0);
       
-        // Hacer la predicción utilizando el modelo cargado
         const prediction = model.predict(normalizedInput);
       
-        // Obtener el resultado de la predicción
         const result = prediction.dataSync();
         
         let predict1 = Math.round(result[0])
@@ -181,7 +147,6 @@
         let prov1 = result[0]
         let prov2 = result[1]
         
-        // Mostrar la predicción en la etiqueta p con el id "pred"
         var predElement = document.getElementById("pred");
         if (predict1 == 1){
           predElement.innerHTML = 'Predicción: Maligno <br> Probabilidad: ' + (prov1.toFixed(2) * 100) + "%";
@@ -191,6 +156,11 @@
         }
         else if (predict1 == 1 && predict2 == 1){
           predElement.textContent = 'Predicción: Nuestro sistema no puede predecir con exactitud su caso, porfavor introduzaca otra radiografia o pongase en contacto con un experto';
+        }
+        
+        var tempParagraph = document.getElementById("temp");
+        if (tempParagraph) {
+          tempParagraph.remove();
         }
       }
     </script>
