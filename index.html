@@ -30,13 +30,13 @@
         var form = document.createElement("form");
         var inputFile = document.createElement("input");
         var submitButton = document.createElement("input");
-        var sendButton = document.createElement("button");
+        // var sendButton = document.createElement("button");
         var predParagraph = document.createElement("p");
         var showDiv = document.createElement("div");
       
         form.appendChild(inputFile);
         form.appendChild(submitButton);
-        form.appendChild(sendButton);
+        // form.appendChild(sendButton);
         container.appendChild(form);
         container.appendChild(predParagraph);
         container.appendChild(showDiv);
@@ -48,18 +48,18 @@
         submitButton.setAttribute("type", "button");
         submitButton.setAttribute("value", "Enviar");
         submitButton.setAttribute("onclick", "handleFormSubmit()");
-        sendButton.setAttribute("id", "send");
-        sendButton.textContent = "Enviar";
+        submitButton.setAttribute("id", "send");
+        submitButton.textContent = "Enviar";
         predParagraph.setAttribute("id", "pred");
         showDiv.setAttribute("id", "show");
 
-        var sendButton = document.getElementById("send");
-        sendButton.addEventListener("click", function() {
+        var submitButton = document.getElementById("send");
+        submitButton.addEventListener("click", function() {
           var tempParagraph = document.createElement("p");
           tempParagraph.setAttribute("id", "temp");
           tempParagraph.textContent = "Cargando modelo...";
           container.appendChild(tempParagraph);
-        });
+});
 
       });
       
