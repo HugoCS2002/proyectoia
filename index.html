@@ -53,12 +53,14 @@
         predParagraph.setAttribute("id", "pred");
         showDiv.setAttribute("id", "show");
 
+        var sendButton = document.getElementById("send");
         sendButton.addEventListener("click", function() {
           var tempParagraph = document.createElement("p");
           tempParagraph.setAttribute("id", "temp");
           tempParagraph.textContent = "Cargando modelo...";
           container.appendChild(tempParagraph);
         });
+
       });
       
       btnVis.addEventListener("click", function() {
