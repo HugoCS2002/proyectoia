@@ -93,3 +93,8 @@ text-align: center;
 .image-container {
   display: flex;
 }
+.image-container img{
+  flex-basis: calc(95% - 10px);
+  margin-bottom: 20px;
+  text-align: center;
+}
