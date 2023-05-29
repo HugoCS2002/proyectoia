@@ -63,16 +63,28 @@
 
       });
       
+      // btnVis.addEventListener("click", function() {
+      //   container.innerHTML = "";
+      
+      //   var image = document.createElement("img");
+      
+      //   image.setAttribute("src", "img/visualizacion.png");
+      
+      //   var imageContainer = document.createElement("div");
+      //   imageContainer.appendChild(image);
+      
+      //   container.appendChild(imageContainer);
+      // });
       btnVis.addEventListener("click", function() {
         container.innerHTML = "";
-      
+
         var image = document.createElement("img");
-      
         image.setAttribute("src", "img/visualizacion.png");
-      
+
         var imageContainer = document.createElement("div");
+        imageContainer.classList.add("image-container"); // Agregamos la clase "image-container"
         imageContainer.appendChild(image);
-      
+
         container.appendChild(imageContainer);
       });
       
