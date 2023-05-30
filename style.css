@@ -2,11 +2,11 @@
    HTML content. To learn how to do something, just try searching Google for questions like
    "how to change link color." */
 
-   body {
-    font-family: Arial, sans-serif;
-    background-color: #ffffff;
-    text-align: center;
-  }
+body {
+font-family: Arial, sans-serif;
+background-color: #ffffff;
+text-align: center;
+}
   
 h1 {
 text-align: center;
@@ -92,9 +92,12 @@ text-align: center;
 
 .image-container {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
-.image-container img{
-  flex-basis: calc(95% - 10px);
-  margin-bottom: 20px;
-  text-align: center;
+
+.image-container img {
+  max-width: 100%;
+  max-height: 100%;
 }
