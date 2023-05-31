@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Proyecto IA - David y Hugo</title>
+    <title>Detección de Cáncer nteligente</title>
     <link rel="shortcut icon" href="img/Cerebron.ico">
      <meta charset="UTF-8">
       <link rel="stylesheet" type="text/css" href="style.css">
@@ -148,7 +148,7 @@
       
         await image.decode();
       
-        const resizedImage = tf.browser.fromPixels(image).resizeBilinear([200, 200]).toFloat();
+        const resizedImage = tf.browser.fromPixels(image).resizeBilinear([80, 80]).toFloat();
       
         const inputTensor = resizedImage.expandDims();
       
