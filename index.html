@@ -17,7 +17,7 @@
       <button id="btnmod">Entrenamiento del modelo</button>
     </nav>
     <div id="container">
-      <img src="/img/abastos.jpg" alt="">
+      <img src="img/abastos.jpg" alt="">
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.12.0/dist/tf.min.js"></script>
     <script>
@@ -137,7 +137,7 @@
       
       async function loadModelAndPredict(imageData) {
         console.log("Cargando modelo...");
-        const model = await tf.loadLayersModel("https://raw.githubusercontent.com/HugoCS2002/proyectoia/master/modelojs/model.json");
+        const model = await tf.loadLayersModel("https://raw.githubusercontent.com/HugoCS2002/proyectoia/master/modelo/model.json");
         console.log("Modelo cargado...");
       
         var showDiv = document.getElementById("show");
